@@ -1,5 +1,7 @@
 server:
   port: 8080
+  servlet:
+    application-display-name:
 
 spring:
   datasource:
@@ -18,3 +20,9 @@ spring:
 
 logging.level:
   org.springframework.boot.autoconfigure: ERROR
+
+app:
+  secret: asdfghjkl
+  refreshSecret: asdfghjkl
+  JWT_ACCESS_EXPIRE: 3600000
+  JWT_REFRESH_EXPIRE: 604,800,000
