@@ -9,8 +9,6 @@ public interface TokenService {
 
     VerifyTokenRo verifyToken(String token);
 
-    String generateRefreshToken(String memberId, int accessLevel);
-
     String remakeAccessToken(String token);
 
     String getMemberIdByToken(String token);

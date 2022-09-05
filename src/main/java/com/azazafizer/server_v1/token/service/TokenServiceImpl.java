@@ -1,10 +1,12 @@
 package com.azazafizer.server_v1.token.service;
 
+import com.azazafizer.server_v1.common.exception.BadRequestException;
+import com.azazafizer.server_v1.common.exception.GoneException;
+import com.azazafizer.server_v1.common.exception.InternalServerException;
 import com.azazafizer.server_v1.common.properties.AppProperties;
 import com.azazafizer.server_v1.token.domain.enums.JwtAuth;
 import com.azazafizer.server_v1.token.domain.ro.VerifyTokenRo;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +35,7 @@ public class TokenServiceImpl implements TokenService{
         }
 
         Map<String, Object> claims = new HashMap<>();
-        claims.put("userId", memberId);
+        claims.put("memberId", memberId);
 
         return Jwts.builder()
                 .setClaims(claims)
@@ -50,17 +52,38 @@ public class TokenServiceImpl implements TokenService{
     }
 
     @Override
-    public String generateRefreshToken(String memberId, int accessLevel) {
-        return null;
-    }
+    public String remakeAccessToken(String refreshToken) {
+        if (refreshToken == null || refreshToken.trim().isEmpty()) {
+            throw new BadRequestException("토큰이 전송되지 않았습니다");
+        }
 
-    @Override
-    public String remakeAccessToken(String token) {
-        return null;
+        Claims claims = this.parseToken(refreshToken, JwtAuth.REFRESH);
+//        User user = userServiceImpl.findById(claims.get("userId").toString());
+
+        return generateToken("", JwtAuth.ACCESS);
     }
 
     @Override
     public String getMemberIdByToken(String token) {
         return null;
+    }
+
+    private Claims parseToken(String token, JwtAuth jwtAuth) {
+        try {
+            return Jwts.parser()
+                    .setSigningKey(
+                            jwtAuth == JwtAuth.ACCESS
+                                    ? appProperties.getSecret()
+                                    : appProperties.getRefreshSecret()
+                    )
+                    .parseClaimsJws(token)
+                    .getBody();
+        } catch (ExpiredJwtException e) {
+            throw new GoneException("토큰이 만료되었습니다");
+        } catch (IllegalArgumentException e) {
+            throw new BadRequestException("토큰이 없습니다");
+        } catch (Exception e) {
+            throw new InternalServerException("토큰 해석 중 에러 발생");
+        }
     }
 }
