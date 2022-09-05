@@ -5,7 +5,6 @@ import com.azazafizer.server_v1.common.exception.GoneException;
 import com.azazafizer.server_v1.common.exception.InternalServerException;
 import com.azazafizer.server_v1.common.properties.AppProperties;
 import com.azazafizer.server_v1.token.domain.enums.JwtAuth;
-import com.azazafizer.server_v1.token.domain.ro.VerifyTokenRo;
 import io.jsonwebtoken.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -61,11 +60,6 @@ public class TokenServiceImpl implements TokenService{
 //        User user = userServiceImpl.findById(claims.get("userId").toString());
 
         return generateToken("", JwtAuth.ACCESS);
-    }
-
-    @Override
-    public String getMemberIdByToken(String token) {
-        return null;
     }
 
     private Claims parseToken(String token, JwtAuth jwtAuth) {
