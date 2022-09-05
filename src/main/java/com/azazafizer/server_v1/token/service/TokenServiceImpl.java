@@ -47,7 +47,7 @@ public class TokenServiceImpl implements TokenService{
     }
 
     @Override
-    public VerifyTokenRo verifyToken(String token) {
+    public String verifyToken(String token) {
         return null;
     }
 

@@ -27,7 +27,7 @@ public class BearerAuthInterceptor implements HandlerInterceptor {
             throw new IllegalArgumentException("유효하지 않은 토큰");
         }
 
-        String member = tokenService.getMemberIdByToken(token);
+        String member = tokenService.verifyToken(token);
         request.setAttribute("member", member);
         return true;
     }

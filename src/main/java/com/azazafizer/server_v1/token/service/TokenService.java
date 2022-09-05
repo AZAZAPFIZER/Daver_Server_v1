@@ -7,7 +7,7 @@ public interface TokenService {
 
     String generateToken(String memberId, JwtAuth jwtAuth);
 
-    VerifyTokenRo verifyToken(String token);
+    String verifyToken(String token);
 
     String remakeAccessToken(String token);
 
