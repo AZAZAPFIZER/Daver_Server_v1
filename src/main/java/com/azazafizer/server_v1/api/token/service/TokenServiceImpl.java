@@ -1,5 +1,8 @@
 package com.azazafizer.server_v1.api.token.service;
 
+import com.azazafizer.server_v1.api.member.domain.entity.Member;
+import com.azazafizer.server_v1.api.member.domain.repository.MemberRepository;
+import com.azazafizer.server_v1.api.member.service.MemberService;
 import com.azazafizer.server_v1.common.exception.BadRequestException;
 import com.azazafizer.server_v1.common.exception.GoneException;
 import com.azazafizer.server_v1.common.exception.InternalServerException;
@@ -17,8 +20,11 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class TokenServiceImpl implements TokenService{
 
+    private final MemberService memberService;
     private final AppProperties appProperties;
     private static final SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
+    private final long JWT_ACCESS_EXPIRE = 1000 * 60 * 60;
+    private final long JWT_REFRESH_EXPIRE =  1000 * 60 * 60 * 24 * 7;
 
     @Override
     public String generateToken(String memberId, JwtAuth jwtAuth) {
@@ -26,10 +32,10 @@ public class TokenServiceImpl implements TokenService{
         String secretKey;
 
         if (jwtAuth == JwtAuth.ACCESS) {
-            expiredAt = new Date(expiredAt.getTime() + appProperties.getJWT_ACCESS_EXPIRE());
+            expiredAt = new Date(expiredAt.getTime() + JWT_ACCESS_EXPIRE);
             secretKey = appProperties.getSecret();
         } else {
-            expiredAt = new Date(expiredAt.getTime() + appProperties.getJWT_REFRESH_EXPIRE());
+            expiredAt = new Date(expiredAt.getTime() + JWT_REFRESH_EXPIRE);
             secretKey = appProperties.getRefreshSecret();
         }
 
@@ -46,8 +52,9 @@ public class TokenServiceImpl implements TokenService{
     }
 
     @Override
-    public String verifyToken(String token) {
-        return null;
+    public Member verifyToken(String token) {
+        return memberService.getMemberById(
+                parseToken(token, JwtAuth.ACCESS).get("memberId").toString());
     }
 
     @Override
@@ -57,9 +64,9 @@ public class TokenServiceImpl implements TokenService{
         }
 
         Claims claims = this.parseToken(refreshToken, JwtAuth.REFRESH);
-//        User user = userServiceImpl.findById(claims.get("userId").toString());
+        Member member = memberService.getMemberById(claims.get("userId").toString());
 
-        return generateToken("", JwtAuth.ACCESS);
+        return generateToken(member.getId(), JwtAuth.ACCESS);
     }
 
     private Claims parseToken(String token, JwtAuth jwtAuth) {

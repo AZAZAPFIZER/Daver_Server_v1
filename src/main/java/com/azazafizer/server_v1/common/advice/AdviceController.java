@@ -1,7 +1,7 @@
 package com.azazafizer.server_v1.common.advice;
 
-import com.stuent.requirement.common.exception.*;
-import com.stuent.requirement.common.response.ResponseError;
+import com.azazafizer.server_v1.common.exception.*;
+import com.azazafizer.server_v1.common.response.ResponseError;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

@@ -24,5 +24,3 @@ logging.level:
 app:
   secret: asdfghjkl
   refreshSecret: asdfghjkl
-  JWT_ACCESS_EXPIRE: 3600000
-  JWT_REFRESH_EXPIRE: 604,800,000

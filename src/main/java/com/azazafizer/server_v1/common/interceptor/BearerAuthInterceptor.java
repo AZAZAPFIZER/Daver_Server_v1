@@ -1,5 +1,6 @@
 package com.azazafizer.server_v1.common.interceptor;
 
+import com.azazafizer.server_v1.api.member.domain.entity.Member;
 import com.azazafizer.server_v1.common.extractor.AuthorizationExtractor;
 import com.azazafizer.server_v1.api.token.service.TokenService;
 import lombok.AllArgsConstructor;
@@ -27,7 +28,7 @@ public class BearerAuthInterceptor implements HandlerInterceptor {
             throw new IllegalArgumentException("유효하지 않은 토큰");
         }
 
-        String member = tokenService.verifyToken(token);
+        Member member = tokenService.verifyToken(token);
         request.setAttribute("member", member);
         return true;
     }
