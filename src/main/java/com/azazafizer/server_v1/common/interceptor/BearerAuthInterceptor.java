@@ -1,7 +1,7 @@
 package com.azazafizer.server_v1.common.interceptor;
 
-import com.b1nd.dodamdodam.common.extractor.AuthorizationExtractor;
-import com.b1nd.dodamdodam.token.service.TokenService;
+import com.azazafizer.server_v1.common.extractor.AuthorizationExtractor;
+import com.azazafizer.server_v1.token.service.TokenService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -27,7 +27,7 @@ public class BearerAuthInterceptor implements HandlerInterceptor {
             throw new IllegalArgumentException("유효하지 않은 토큰");
         }
 
-        String member = tokenService.getMemberIdByToken(token);
+        String member = tokenService.verifyToken(token);
         request.setAttribute("member", member);
         return true;
     }
