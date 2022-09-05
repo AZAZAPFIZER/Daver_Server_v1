@@ -1,7 +1,7 @@
 package com.azazafizer.server_v1.common.interceptor;
 
 import com.azazafizer.server_v1.common.extractor.AuthorizationExtractor;
-import com.azazafizer.server_v1.token.service.TokenService;
+import com.azazafizer.server_v1.api.token.service.TokenService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;

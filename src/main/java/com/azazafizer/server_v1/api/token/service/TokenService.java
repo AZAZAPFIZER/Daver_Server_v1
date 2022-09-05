@@ -1,6 +1,6 @@
-package com.azazafizer.server_v1.token.service;
+package com.azazafizer.server_v1.api.token.service;
 
-import com.azazafizer.server_v1.token.domain.enums.JwtAuth;
+import com.azazafizer.server_v1.api.token.domain.enums.JwtAuth;
 
 public interface TokenService {
 

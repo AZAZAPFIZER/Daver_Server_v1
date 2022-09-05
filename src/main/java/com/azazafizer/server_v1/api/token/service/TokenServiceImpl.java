@@ -1,10 +1,10 @@
-package com.azazafizer.server_v1.token.service;
+package com.azazafizer.server_v1.api.token.service;
 
 import com.azazafizer.server_v1.common.exception.BadRequestException;
 import com.azazafizer.server_v1.common.exception.GoneException;
 import com.azazafizer.server_v1.common.exception.InternalServerException;
 import com.azazafizer.server_v1.common.properties.AppProperties;
-import com.azazafizer.server_v1.token.domain.enums.JwtAuth;
+import com.azazafizer.server_v1.api.token.domain.enums.JwtAuth;
 import io.jsonwebtoken.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
