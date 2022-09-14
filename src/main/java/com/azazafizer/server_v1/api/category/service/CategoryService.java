@@ -8,6 +8,8 @@ import java.util.List;
 
 public interface CategoryService {
 
+    List<Category> getAllCategory();
+
     List<CategoryMember> getMyCategory(Member member);
 
     List<CategoryMember> getOtherPeopleCategory(int memberId);

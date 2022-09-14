@@ -19,6 +19,16 @@ public class CategoryController {
 
     private final CategoryService categoryService;
 
+    @GetMapping
+    public ResponseData<List<Category>> getAllCategory() {
+        List<Category> categoryList = categoryService.getAllCategory();
+        return new ResponseData<>(
+                HttpStatus.OK,
+                "모든 카테고리 조회 성공",
+                categoryList
+        );
+    }
+
     @GetMapping("/my")
     public ResponseData<List<CategoryMember>> getMyCategory(
             @RequestAttribute Member member

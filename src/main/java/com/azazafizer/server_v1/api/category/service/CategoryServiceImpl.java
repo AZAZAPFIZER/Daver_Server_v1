@@ -21,6 +21,11 @@ public class CategoryServiceImpl implements CategoryService{
     private final MemberRepository memberRepository;
 
     @Override
+    public List<Category> getAllCategory() {
+        return categoryRepository.findAll();
+    }
+
+    @Override
     public List<CategoryMember> getMyCategory(Member member) {
         return categoryMemberRepository.findByMember(member);
     }
