@@ -1,6 +1,7 @@
 package com.azazafizer.server_v1.api.category.controller;
 
 import com.azazafizer.server_v1.api.category.domain.entity.Category;
+import com.azazafizer.server_v1.api.category.domain.entity.CategoryMember;
 import com.azazafizer.server_v1.api.category.service.CategoryService;
 import com.azazafizer.server_v1.api.member.domain.entity.Member;
 import com.azazafizer.server_v1.common.response.Response;
@@ -19,10 +20,10 @@ public class CategoryController {
     private final CategoryService categoryService;
 
     @GetMapping("/my")
-    public ResponseData<List<Category>> getMyCategory(
+    public ResponseData<List<CategoryMember>> getMyCategory(
             @RequestAttribute Member member
     ) {
-        List<Category> categoryList = categoryService.getMyCategory(member);
+        List<CategoryMember> categoryList = categoryService.getMyCategory(member);
         return new ResponseData<>(
                 HttpStatus.OK,
                 "자신의 카테고리 조회 성공",
@@ -31,10 +32,10 @@ public class CategoryController {
     }
 
     @GetMapping("/{memberId}")
-    public ResponseData<List<Category>> getOtherMemberCategory(
+    public ResponseData<List<CategoryMember>> getOtherMemberCategory(
             @PathVariable int memberId
     ) {
-        List<Category> categoryList = categoryService.getOtherPeopleCategory(memberId);
+        List<CategoryMember> categoryList = categoryService.getOtherPeopleCategory(memberId);
         return new ResponseData<>(
                 HttpStatus.OK,
                 "해당 사람의 카테고리 조회 성공",
