@@ -49,7 +49,7 @@ public class CategoryController {
         return new ResponseData<>(
                 HttpStatus.OK,
                 "해당 사람의 카테고리 조회 성공",
-                null
+                categoryList
         );
     }
 }
