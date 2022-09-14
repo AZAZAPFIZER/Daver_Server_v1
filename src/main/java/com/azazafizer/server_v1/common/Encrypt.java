@@ -1,6 +1,6 @@
 package com.azazafizer.server_v1.common;
 
-import com.azazafizer.server_v1.api.token.controller.exception.EncryptException;
+import com.azazafizer.server_v1.common.exception.EncryptException;
 import org.springframework.stereotype.Component;
 
 import java.security.MessageDigest;

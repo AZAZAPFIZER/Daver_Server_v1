@@ -2,9 +2,9 @@ package com.azazafizer.server_v1.api.token.service;
 
 import com.azazafizer.server_v1.api.member.domain.entity.Member;
 import com.azazafizer.server_v1.api.member.service.MemberService;
-import com.azazafizer.server_v1.api.token.controller.exception.BadRequestException;
-import com.azazafizer.server_v1.api.token.controller.exception.GoneException;
-import com.azazafizer.server_v1.api.token.controller.exception.InternalServerException;
+import com.azazafizer.server_v1.common.exception.BadRequestException;
+import com.azazafizer.server_v1.common.exception.GoneException;
+import com.azazafizer.server_v1.common.exception.InternalServerException;
 import com.azazafizer.server_v1.common.properties.AppProperties;
 import com.azazafizer.server_v1.api.token.domain.enums.JwtAuth;
 import io.jsonwebtoken.*;

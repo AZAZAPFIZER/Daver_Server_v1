@@ -10,7 +10,7 @@ import com.azazafizer.server_v1.api.member.domain.ro.LoginRo;
 import com.azazafizer.server_v1.api.token.domain.enums.JwtAuth;
 import com.azazafizer.server_v1.api.token.service.TokenService;
 import com.azazafizer.server_v1.common.Encrypt;
-import com.azazafizer.server_v1.api.token.controller.exception.NotFoundException;
+import com.azazafizer.server_v1.common.exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
