@@ -2,7 +2,6 @@ package com.azazafizer.server_v1.api.token.service;
 
 import com.azazafizer.server_v1.api.member.domain.entity.Member;
 import com.azazafizer.server_v1.api.member.domain.repository.MemberRepository;
-import com.azazafizer.server_v1.api.member.service.MemberService;
 import com.azazafizer.server_v1.common.exception.BadRequestException;
 import com.azazafizer.server_v1.common.exception.GoneException;
 import com.azazafizer.server_v1.common.exception.InternalServerException;

@@ -1,5 +1,6 @@
 package com.azazafizer.server_v1.api.category.controller;
 
+import com.azazafizer.server_v1.api.category.domain.dto.SelectCategoryDto;
 import com.azazafizer.server_v1.api.category.domain.entity.Category;
 import com.azazafizer.server_v1.api.category.domain.entity.CategoryMember;
 import com.azazafizer.server_v1.api.category.service.CategoryService;
@@ -50,6 +51,18 @@ public class CategoryController {
                 HttpStatus.OK,
                 "해당 사람의 카테고리 조회 성공",
                 categoryList
+        );
+    }
+
+    @PostMapping
+    public Response selectCategory(
+            @RequestAttribute Member member,
+            @RequestBody SelectCategoryDto dto
+    ) {
+        categoryService.selectCategory(member, dto);
+        return new Response(
+                HttpStatus.OK,
+                "카테고리 선정 성공"
         );
     }
 }

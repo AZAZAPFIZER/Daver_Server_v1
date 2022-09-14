@@ -2,6 +2,7 @@ package com.azazafizer.server_v1.api.category.domain.entity;
 
 import com.azazafizer.server_v1.api.member.domain.entity.Member;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -23,4 +24,10 @@ public class CategoryMember {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "fk_category_id")
     private Category category;
+
+    @Builder
+    public CategoryMember(Member member, Category category) {
+        this.member = member;
+        this.category = category;
+    }
 }

@@ -2,6 +2,7 @@ package com.azazafizer.server_v1.api.category.domain.entity;
 
 import com.azazafizer.server_v1.api.member.domain.entity.Member;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -17,4 +18,9 @@ public class Category {
 
     @Column(nullable = false)
     private String name;
+
+    @Builder
+    public Category(String name) {
+        this.name = name;
+    }
 }
