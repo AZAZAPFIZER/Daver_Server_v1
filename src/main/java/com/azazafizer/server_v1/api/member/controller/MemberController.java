@@ -3,6 +3,7 @@ package com.azazafizer.server_v1.api.member.controller;
 import com.azazafizer.server_v1.api.member.domain.dto.JoinDto;
 import com.azazafizer.server_v1.api.member.domain.dto.LoginDto;
 import com.azazafizer.server_v1.api.member.domain.dto.ModifyMemberDto;
+import com.azazafizer.server_v1.api.member.domain.dto.ModifyPwDto;
 import com.azazafizer.server_v1.api.member.domain.entity.Member;
 import com.azazafizer.server_v1.api.member.domain.ro.LoginRo;
 import com.azazafizer.server_v1.api.member.service.MemberService;
@@ -11,6 +12,8 @@ import com.azazafizer.server_v1.common.response.ResponseData;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping(value = "/member")
@@ -32,7 +35,7 @@ public class MemberController {
     }
 
     @PostMapping("/join")
-    public Response join(@RequestBody JoinDto joinDto) {
+    public Response join(@RequestBody @Valid JoinDto joinDto) {
         memberService.join(joinDto);
         return new Response(
                 HttpStatus.CREATED,
@@ -41,7 +44,7 @@ public class MemberController {
     }
 
     @PostMapping("/login")
-    public ResponseData<LoginRo> login(@RequestBody LoginDto loginDto) {
+    public ResponseData<LoginRo> login(@RequestBody @Valid LoginDto loginDto) {
         LoginRo loginData = memberService.login(loginDto);
         return new ResponseData<>(
                 HttpStatus.CREATED,
@@ -62,4 +65,15 @@ public class MemberController {
         );
     }
 
+    @PatchMapping("/pw")
+    public Response modifyPw(
+            @RequestAttribute Member member,
+            @RequestBody @Valid ModifyPwDto dto
+    ) {
+        memberService.modifyPw(member, dto);
+        return new Response(
+                HttpStatus.OK,
+                "패스원드 수정 성공"
+        );
+    }
 }

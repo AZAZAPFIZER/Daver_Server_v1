@@ -3,6 +3,7 @@ package com.azazafizer.server_v1.api.member.service;
 import com.azazafizer.server_v1.api.member.domain.dto.JoinDto;
 import com.azazafizer.server_v1.api.member.domain.dto.LoginDto;
 import com.azazafizer.server_v1.api.member.domain.dto.ModifyMemberDto;
+import com.azazafizer.server_v1.api.member.domain.dto.ModifyPwDto;
 import com.azazafizer.server_v1.api.member.domain.entity.Member;
 import com.azazafizer.server_v1.api.member.domain.repository.MemberRepository;
 import com.azazafizer.server_v1.api.member.domain.ro.LoginRo;
@@ -57,6 +58,14 @@ public class MemberServiceImpl implements MemberService{
                 dto.getName() != null ? member.getName() : dto.getName(),
                 dto.getEmail() != null ? member.getEmail() : dto.getEmail(),
                 dto.getProfileImage());
+        memberRepository.save(member);
+    }
+
+    @Override
+    public void modifyPw(Member member, ModifyPwDto dto) {
+        String pw = encrypt.sha512(dto.getPw());
+
+        member.updatePw(pw);
         memberRepository.save(member);
     }
 }
