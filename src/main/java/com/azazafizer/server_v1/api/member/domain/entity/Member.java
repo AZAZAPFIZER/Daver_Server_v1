@@ -1,6 +1,5 @@
 package com.azazafizer.server_v1.api.member.domain.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -9,7 +8,7 @@ import java.time.LocalDate;
 
 @Getter
 @Entity(name = "member")
-@AllArgsConstructor @NoArgsConstructor
+@NoArgsConstructor
 public class Member {
 
     @Id
