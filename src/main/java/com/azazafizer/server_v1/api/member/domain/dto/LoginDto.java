@@ -5,9 +5,8 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class JoinDto {
+public class LoginDto {
 
-    private String name;
-    private String pw;
     private String email;
+    private String pw;
 }

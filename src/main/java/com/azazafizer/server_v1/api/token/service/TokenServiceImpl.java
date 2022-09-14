@@ -26,7 +26,7 @@ public class TokenServiceImpl implements TokenService{
     private final long JWT_REFRESH_EXPIRE =  1000 * 60 * 60 * 24 * 7;
 
     @Override
-    public String generateToken(String memberId, JwtAuth jwtAuth) {
+    public String generateToken(int memberId, JwtAuth jwtAuth) {
         Date expiredAt = new Date();
         String secretKey;
 
@@ -53,7 +53,7 @@ public class TokenServiceImpl implements TokenService{
     @Override
     public Member verifyToken(String token) {
         return memberService.getMemberById(
-                parseToken(token, JwtAuth.ACCESS).get("memberId").toString());
+                Integer.parseInt(parseToken(token, JwtAuth.ACCESS).get("memberId").toString()));
     }
 
     @Override
@@ -63,7 +63,7 @@ public class TokenServiceImpl implements TokenService{
         }
 
         Claims claims = this.parseToken(refreshToken, JwtAuth.REFRESH);
-        Member member = memberService.getMemberById(claims.get("userId").toString());
+        Member member = memberService.getMemberById(Integer.parseInt(claims.get("userId").toString()));
 
         return generateToken(member.getId(), JwtAuth.ACCESS);
     }

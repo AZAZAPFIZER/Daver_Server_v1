@@ -1,7 +1,6 @@
 package com.azazafizer.server_v1.common.advice;
 
 import com.azazafizer.server_v1.api.token.controller.exception.*;
-import com.azazafizer.server_v1.common.exception.*;
 import com.azazafizer.server_v1.common.response.ResponseError;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

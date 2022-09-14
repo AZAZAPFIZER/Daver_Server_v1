@@ -12,8 +12,8 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class Member {
 
-    @Id
-    private String id;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
     @Column(nullable = false)
     private String name;
@@ -30,8 +30,7 @@ public class Member {
     private LocalDate joinedAt;
 
     @Builder
-    public Member(String id, String name, String pw, String email) {
-        this.id = id;
+    public Member(String name, String pw, String email) {
         this.name = name;
         this.pw = pw;
         this.email = email;

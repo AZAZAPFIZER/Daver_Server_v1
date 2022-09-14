@@ -1,7 +1,9 @@
 package com.azazafizer.server_v1.api.member.controller;
 
 import com.azazafizer.server_v1.api.member.domain.dto.JoinDto;
+import com.azazafizer.server_v1.api.member.domain.dto.LoginDto;
 import com.azazafizer.server_v1.api.member.domain.entity.Member;
+import com.azazafizer.server_v1.api.member.domain.ro.LoginRo;
 import com.azazafizer.server_v1.api.member.service.MemberService;
 import com.azazafizer.server_v1.common.response.Response;
 import com.azazafizer.server_v1.common.response.ResponseData;
@@ -18,7 +20,7 @@ public class MemberController {
 
     @GetMapping("/{id}")
     public ResponseData<Member> getMemberById(
-            @PathVariable String id
+            @PathVariable int id
     ) {
         Member member = memberService.getMemberById(id);
         return new ResponseData<>(
@@ -30,10 +32,20 @@ public class MemberController {
 
     @PostMapping("/join")
     public Response join(@RequestBody JoinDto joinDto) {
-
+        memberService.join(joinDto);
         return new Response(
                 HttpStatus.CREATED,
                 "회원가입 성공"
+        );
+    }
+
+    @PostMapping("/login")
+    public ResponseData<LoginRo> login(@RequestBody LoginDto loginDto) {
+        LoginRo loginData = memberService.login(loginDto);
+        return new ResponseData<>(
+                HttpStatus.CREATED,
+                "로그인 성공",
+                loginData
         );
     }
 }

@@ -5,7 +5,7 @@ import com.azazafizer.server_v1.api.token.domain.enums.JwtAuth;
 
 public interface TokenService {
 
-    String generateToken(String memberId, JwtAuth jwtAuth);
+    String generateToken(int memberId, JwtAuth jwtAuth);
 
     Member verifyToken(String token);
 
