@@ -1,5 +1,6 @@
 package com.azazafizer.server_v1.api.category.service;
 
+import com.azazafizer.server_v1.api.category.domain.dto.ModifyCategoryDto;
 import com.azazafizer.server_v1.api.category.domain.dto.SelectCategoryDto;
 import com.azazafizer.server_v1.api.category.domain.entity.Category;
 import com.azazafizer.server_v1.api.category.domain.entity.CategoryMember;
@@ -16,4 +17,6 @@ public interface CategoryService {
     List<CategoryMember> getOtherPeopleCategory(int memberId);
 
     void selectCategory(Member member, SelectCategoryDto dto);
+
+    void modifyCategory(ModifyCategoryDto dto);
 }

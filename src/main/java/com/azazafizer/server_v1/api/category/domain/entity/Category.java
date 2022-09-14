@@ -19,6 +19,10 @@ public class Category {
     @Column(nullable = false)
     private String name;
 
+    public void updateCategory(String name) {
+        this.name = name;
+    }
+
     @Builder
     public Category(String name) {
         this.name = name;

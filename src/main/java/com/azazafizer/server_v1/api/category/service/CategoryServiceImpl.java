@@ -1,5 +1,6 @@
 package com.azazafizer.server_v1.api.category.service;
 
+import com.azazafizer.server_v1.api.category.domain.dto.ModifyCategoryDto;
 import com.azazafizer.server_v1.api.category.domain.dto.SelectCategoryDto;
 import com.azazafizer.server_v1.api.category.domain.entity.Category;
 import com.azazafizer.server_v1.api.category.domain.entity.CategoryMember;
@@ -51,5 +52,13 @@ public class CategoryServiceImpl implements CategoryService{
                     .build();
             categoryMemberRepository.save(categoryMember);
         }
+    }
+
+    @Override
+    public void modifyCategory(ModifyCategoryDto dto) {
+        Category category = categoryRepository.findById(dto.getCategoryId())
+                .orElseThrow(() -> new NotFoundException("해당 카테고리는 존재하지 않습니다"));
+        category.updateCategory(dto.getCategory());
+        categoryRepository.save(category);
     }
 }
