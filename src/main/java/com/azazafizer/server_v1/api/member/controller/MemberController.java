@@ -2,6 +2,7 @@ package com.azazafizer.server_v1.api.member.controller;
 
 import com.azazafizer.server_v1.api.member.domain.dto.JoinDto;
 import com.azazafizer.server_v1.api.member.domain.dto.LoginDto;
+import com.azazafizer.server_v1.api.member.domain.dto.ModifyMemberDto;
 import com.azazafizer.server_v1.api.member.domain.entity.Member;
 import com.azazafizer.server_v1.api.member.domain.ro.LoginRo;
 import com.azazafizer.server_v1.api.member.service.MemberService;
@@ -25,7 +26,7 @@ public class MemberController {
         Member member = memberService.getMemberById(id);
         return new ResponseData<>(
                 HttpStatus.OK,
-                "해당 아이디의 유저 조회 성공",
+                "해당 아이디의 회원 조회 성공",
                 member
         );
     }
@@ -48,4 +49,17 @@ public class MemberController {
                 loginData
         );
     }
+
+    @PatchMapping
+    public Response modifyMemberInfo(
+            @RequestAttribute Member member,
+            @RequestBody ModifyMemberDto dto
+    ) {
+        memberService.modifyMemberInfo(member, dto);
+        return new Response(
+                HttpStatus.OK,
+                "회원 정보 수정 성공"
+        );
+    }
+
 }

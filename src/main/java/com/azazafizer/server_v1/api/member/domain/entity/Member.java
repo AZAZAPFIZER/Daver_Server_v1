@@ -29,6 +29,12 @@ public class Member {
     @Column(nullable = false)
     private LocalDate joinedAt;
 
+    public void updateMemberInfo(String name, String email, String profileImage){
+        this.name = name;
+        this.email = email;
+        this.profileImage = profileImage;
+    }
+
     @Builder
     public Member(String name, String pw, String email) {
         this.name = name;
