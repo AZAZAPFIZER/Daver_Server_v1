@@ -1,6 +1,7 @@
 package com.azazafizer.server_v1.api.category.domain.entity;
 
 import com.azazafizer.server_v1.api.member.domain.entity.Member;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -19,5 +20,6 @@ public class Category {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "fk_member_id")
+    @JsonIgnore
     private Member member;
 }

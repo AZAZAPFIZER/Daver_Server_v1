@@ -2,6 +2,7 @@ package com.azazafizer.server_v1.api.category.service;
 
 import com.azazafizer.server_v1.api.category.domain.entity.Category;
 import com.azazafizer.server_v1.api.category.domain.repository.CategoryRepository;
+import com.azazafizer.server_v1.api.member.domain.entity.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,7 @@ public class CategoryServiceImpl implements CategoryService{
     private final CategoryRepository categoryRepository;
 
     @Override
-    public List<Category> getAllCategory() {
-        return categoryRepository.findAll();
+    public List<Category> getMyCategory(Member member) {
+        return categoryRepository.findByMember(member);
     }
 }
