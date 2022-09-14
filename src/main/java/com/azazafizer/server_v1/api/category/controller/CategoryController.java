@@ -7,10 +7,7 @@ import com.azazafizer.server_v1.common.response.Response;
 import com.azazafizer.server_v1.common.response.ResponseData;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,6 +27,18 @@ public class CategoryController {
                 HttpStatus.OK,
                 "자신의 카테고리 조회 성공",
                 categoryList
+        );
+    }
+
+    @GetMapping("/{memberId}")
+    public ResponseData<List<Category>> getOtherMemberCategory(
+            @PathVariable int memberId
+    ) {
+        List<Category> categoryList = categoryService.getOtherPeopleCategory(memberId);
+        return new ResponseData<>(
+                HttpStatus.OK,
+                "해당 사람의 카테고리 조회 성공",
+                null
         );
     }
 }
