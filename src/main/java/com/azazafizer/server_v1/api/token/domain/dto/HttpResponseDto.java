@@ -1,4 +1,4 @@
-package com.azazafizer.server_v1.token.domain.dto;
+package com.azazafizer.server_v1.api.token.domain.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
