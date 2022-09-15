@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Getter
 @Entity(name = "friend")
 @NoArgsConstructor
-public class Friend {
+public class FriendRelation {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -33,7 +33,7 @@ public class Friend {
     }
 
     @Builder
-    public Friend(Member my, Member friend, FriendStatus status) {
+    public FriendRelation(Member my, Member friend, FriendStatus status) {
         this.my = my;
         this.friend = friend;
         this.status = status;
