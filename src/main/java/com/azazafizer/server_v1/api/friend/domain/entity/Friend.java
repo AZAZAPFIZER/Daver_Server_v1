@@ -16,10 +16,12 @@ public class Friend {
     private int id;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    private Member sendMember;
+    @JoinColumn(name = "my_member_id")
+    private Member my;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    private Member receiveMember;
+    @JoinColumn(name = "friend_member_id")
+    private Member friend;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
