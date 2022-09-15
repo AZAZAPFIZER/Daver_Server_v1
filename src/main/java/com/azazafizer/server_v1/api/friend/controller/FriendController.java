@@ -68,7 +68,7 @@ public class FriendController {
         friendService.allowFriend(member, dto);
         return new Response(
                 HttpStatus.OK,
-                "친구 신청 수락"
+                "친구 신청 수락 성공"
         );
     }
 }
