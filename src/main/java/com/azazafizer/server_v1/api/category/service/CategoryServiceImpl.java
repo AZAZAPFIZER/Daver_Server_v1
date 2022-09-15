@@ -61,4 +61,11 @@ public class CategoryServiceImpl implements CategoryService{
         category.updateCategory(dto.getCategory());
         categoryRepository.save(category);
     }
+
+    @Override
+    public void deleteCategory(int id) {
+        Category category = categoryRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("해당 카테고리는 존재하지 않습니다"));
+        categoryRepository.delete(category);
+    }
 }

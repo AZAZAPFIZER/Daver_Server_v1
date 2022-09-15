@@ -67,14 +67,25 @@ public class CategoryController {
         );
     }
 
-    @PostMapping
+    @PatchMapping
     public Response modifyCategory(
             @RequestBody ModifyCategoryDto dto
     ) {
         categoryService.modifyCategory(dto);
         return new Response(
                 HttpStatus.OK,
-                "카테고리 생성 성공"
+                "카테고리 수정 성공"
+        );
+    }
+
+    @DeleteMapping("/{id}")
+    public Response deleteCategory(
+            @PathVariable int id
+    ) {
+        categoryService.deleteCategory(id);
+        return new Response(
+                HttpStatus.OK,
+                "카테고리 삭제 성공"
         );
     }
 }
