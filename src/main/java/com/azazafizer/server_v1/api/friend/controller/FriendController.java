@@ -1,6 +1,7 @@
 package com.azazafizer.server_v1.api.friend.controller;
 
 import com.azazafizer.server_v1.api.friend.domain.dto.AddFriendDto;
+import com.azazafizer.server_v1.api.friend.domain.dto.CancelAddFriendDto;
 import com.azazafizer.server_v1.api.friend.domain.entity.Friend;
 import com.azazafizer.server_v1.api.friend.service.FriendService;
 import com.azazafizer.server_v1.api.member.domain.entity.Member;
@@ -40,8 +41,20 @@ public class FriendController {
     ) {
         friendService.addFriend(member, dto);
         return new Response(
-                HttpStatus.OK,
+                HttpStatus.CREATED,
                 "친구 신청 성공"
+        );
+    }
+
+    @DeleteMapping("/cancel")
+    public Response cancelAddFriend(
+            @RequestAttribute Member member,
+            @RequestBody @Valid CancelAddFriendDto dto
+    ) {
+        friendService.cancelAddFriend(member, dto);
+        return new Response(
+                HttpStatus.OK,
+                "친구 신청 취소 성공"
         );
     }
 }

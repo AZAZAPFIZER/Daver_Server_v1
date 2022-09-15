@@ -28,6 +28,10 @@ public class Friend {
     @Column(nullable = false)
     private FriendStatus status;
 
+    public void updateStatus(FriendStatus status) {
+        this.status = status;
+    }
+
     @Builder
     public Friend(Member my, Member friend, FriendStatus status) {
         this.my = my;
