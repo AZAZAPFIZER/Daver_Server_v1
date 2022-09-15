@@ -6,9 +6,9 @@ import com.azazafizer.server_v1.api.friend.domain.dto.CancelAddFriendDto;
 import com.azazafizer.server_v1.api.friend.domain.entity.FriendRelation;
 import com.azazafizer.server_v1.api.friend.service.FriendService;
 import com.azazafizer.server_v1.api.member.domain.entity.Member;
+import com.azazafizer.server_v1.common.annotation.AuthorizationCheck;
 import com.azazafizer.server_v1.common.response.Response;
 import com.azazafizer.server_v1.common.response.ResponseData;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -35,6 +35,7 @@ public class FriendController {
         );
     }
 
+    @AuthorizationCheck
     @PostMapping
     public Response addFriend(
             @RequestAttribute Member member,

@@ -40,7 +40,7 @@ public class TokenServiceImpl implements TokenService{
         }
 
         Map<String, Object> claims = new HashMap<>();
-        claims.put("memberId", memberId);
+        claims.put("member", memberId);
 
         return Jwts.builder()
                 .setClaims(claims)
@@ -54,7 +54,7 @@ public class TokenServiceImpl implements TokenService{
     @Override
     public Member verifyToken(String token) {
         return memberRepository.findById(
-                Integer.parseInt(parseToken(token, JwtAuth.ACCESS).get("memberId").toString()))
+                Integer.parseInt(parseToken(token, JwtAuth.ACCESS).get("member").toString()))
                 .orElseThrow(() -> new NotFoundException("해당 회원은 존재하지 않습니다"));
     }
 
