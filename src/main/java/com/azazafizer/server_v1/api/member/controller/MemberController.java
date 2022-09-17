@@ -35,9 +35,9 @@ public class MemberController {
     }
 
     @PostMapping("/join")
-    public Response join(@RequestBody @Valid JoinDto joinDto) {
+    public Response<C> join(@RequestBody @Valid JoinDto joinDto) {
         memberService.join(joinDto);
-        return new Response(
+        return new Response<C>(
                 HttpStatus.CREATED,
                 "회원가입 성공"
         );
@@ -54,24 +54,24 @@ public class MemberController {
     }
 
     @PatchMapping
-    public Response modifyMemberInfo(
+    public Response<C> modifyMemberInfo(
             @RequestAttribute Member member,
             @RequestBody ModifyMemberDto dto
     ) {
         memberService.modifyMemberInfo(member, dto);
-        return new Response(
+        return new Response<C>(
                 HttpStatus.OK,
                 "회원 정보 수정 성공"
         );
     }
 
     @PatchMapping("/pw")
-    public Response modifyPw(
+    public Response<C> modifyPw(
             @RequestAttribute Member member,
             @RequestBody @Valid ModifyPwDto dto
     ) {
         memberService.modifyPw(member, dto);
-        return new Response(
+        return new Response<C>(
                 HttpStatus.OK,
                 "패스원드 수정 성공"
         );

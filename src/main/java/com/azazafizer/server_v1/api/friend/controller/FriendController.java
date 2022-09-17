@@ -10,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -34,48 +33,48 @@ public class FriendController {
 
     @AuthorizationCheck
     @PostMapping("/{memberId}")
-    public Response addFriend(
+    public Response<C> addFriend(
             @RequestAttribute Member member,
             @PathVariable int memberId
     ) {
         friendService.addFriend(member, memberId);
-        return new Response(
+        return new Response<C>(
                 HttpStatus.CREATED,
                 "친구 신청 성공"
         );
     }
 
     @DeleteMapping("/cancel/{memberId}")
-    public Response cancelAddFriend(
+    public Response<C> cancelAddFriend(
             @RequestAttribute Member member,
             @PathVariable int memberId
     ) {
         friendService.cancelAddFriend(member, memberId);
-        return new Response(
+        return new Response<C>(
                 HttpStatus.OK,
                 "친구 신청 취소 성공"
         );
     }
 
     @PostMapping("/allow/{memberId}")
-    public Response allowFriend(
+    public Response<C> allowFriend(
             @RequestAttribute Member member,
             @PathVariable int memberId
     ) {
         friendService.allowFriend(member, memberId);
-        return new Response(
+        return new Response<C>(
                 HttpStatus.OK,
                 "친구 신청 수락 성공"
         );
     }
 
     @PostMapping("/deny/{memberId}")
-    public Response denyFriend(
+    public Response<C> denyFriend(
             @RequestAttribute Member member,
             @PathVariable int memberId
     ) {
         friendService.denyFriend(member, memberId);
-        return new Response(
+        return new Response<C>(
                 HttpStatus.OK,
                 "친구 신청 거절 성공"
         );

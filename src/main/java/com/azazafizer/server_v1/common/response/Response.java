@@ -4,7 +4,7 @@ import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
 @Getter
-public class Response {
+public class Response<T> {
     private final int status;
     private final String message;
 
