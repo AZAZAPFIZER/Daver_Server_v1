@@ -1,8 +1,5 @@
 package com.azazafizer.server_v1.api.friend.controller;
 
-import com.azazafizer.server_v1.api.friend.domain.dto.AddFriendDto;
-import com.azazafizer.server_v1.api.friend.domain.dto.AllowFriendDto;
-import com.azazafizer.server_v1.api.friend.domain.dto.CancelAddFriendDto;
 import com.azazafizer.server_v1.api.friend.domain.entity.FriendRelation;
 import com.azazafizer.server_v1.api.friend.service.FriendService;
 import com.azazafizer.server_v1.api.member.domain.entity.Member;
@@ -36,39 +33,51 @@ public class FriendController {
     }
 
     @AuthorizationCheck
-    @PostMapping
+    @PostMapping("/{memberId}")
     public Response addFriend(
             @RequestAttribute Member member,
-            @RequestBody @Valid AddFriendDto dto
+            @PathVariable int memberId
     ) {
-        friendService.addFriend(member, dto);
+        friendService.addFriend(member, memberId);
         return new Response(
                 HttpStatus.CREATED,
                 "친구 신청 성공"
         );
     }
 
-    @DeleteMapping("/cancel")
+    @DeleteMapping("/cancel/{memberId}")
     public Response cancelAddFriend(
             @RequestAttribute Member member,
-            @RequestBody @Valid CancelAddFriendDto dto
+            @PathVariable int memberId
     ) {
-        friendService.cancelAddFriend(member, dto);
+        friendService.cancelAddFriend(member, memberId);
         return new Response(
                 HttpStatus.OK,
                 "친구 신청 취소 성공"
         );
     }
 
-    @PostMapping("/allow")
+    @PostMapping("/allow/{memberId}")
     public Response allowFriend(
             @RequestAttribute Member member,
-            @RequestBody @Valid AllowFriendDto dto
+            @PathVariable int memberId
     ) {
-        friendService.allowFriend(member, dto);
+        friendService.allowFriend(member, memberId);
         return new Response(
                 HttpStatus.OK,
                 "친구 신청 수락 성공"
+        );
+    }
+
+    @PostMapping("/deny/{memberId}")
+    public Response denyFriend(
+            @RequestAttribute Member member,
+            @PathVariable int memberId
+    ) {
+        friendService.denyFriend(member, memberId);
+        return new Response(
+                HttpStatus.OK,
+                "친구 신청 거절 성공"
         );
     }
 }

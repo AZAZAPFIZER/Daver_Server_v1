@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface FriendRepository extends JpaRepository<FriendRelation, Integer> {
+public interface FriendRelationRepository extends JpaRepository<FriendRelation, Integer> {
 
     List<FriendRelation> findByMyAndStatus(Member my, FriendStatus status);
 
