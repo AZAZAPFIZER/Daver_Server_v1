@@ -7,7 +7,7 @@ import org.springframework.http.HttpStatus;
 
 @Getter
 @Setter
-public class ResponseError extends Response<C> {
+public class ResponseError extends Response {
 
     @Builder
     public ResponseError(HttpStatus status, String message) {

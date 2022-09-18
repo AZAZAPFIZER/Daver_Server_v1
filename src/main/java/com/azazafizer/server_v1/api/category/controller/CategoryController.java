@@ -56,34 +56,34 @@ public class CategoryController {
     }
 
     @PostMapping("/select")
-    public Response<C> selectCategory(
+    public Response selectCategory(
             @RequestAttribute Member member,
             @RequestBody SelectCategoryDto dto
     ) {
         categoryService.selectCategory(member, dto);
-        return new Response<C>(
+        return new Response(
                 HttpStatus.OK,
                 "카테고리 선정 성공"
         );
     }
 
     @PatchMapping
-    public Response<C> modifyCategory(
+    public Response modifyCategory(
             @RequestBody ModifyCategoryDto dto
     ) {
         categoryService.modifyCategory(dto);
-        return new Response<C>(
+        return new Response(
                 HttpStatus.OK,
                 "카테고리 수정 성공"
         );
     }
 
     @DeleteMapping("/{id}")
-    public Response<C> deleteCategory(
+    public Response deleteCategory(
             @PathVariable int id
     ) {
         categoryService.deleteCategory(id);
-        return new Response<C>(
+        return new Response(
                 HttpStatus.OK,
                 "카테고리 삭제 성공"
         );

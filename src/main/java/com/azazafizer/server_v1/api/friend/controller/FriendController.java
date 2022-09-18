@@ -33,48 +33,48 @@ public class FriendController {
 
     @AuthorizationCheck
     @PostMapping("/{memberId}")
-    public Response<C> addFriend(
+    public Response addFriend(
             @RequestAttribute Member member,
             @PathVariable int memberId
     ) {
         friendService.addFriend(member, memberId);
-        return new Response<C>(
+        return new Response(
                 HttpStatus.CREATED,
                 "친구 신청 성공"
         );
     }
 
     @DeleteMapping("/cancel/{memberId}")
-    public Response<C> cancelAddFriend(
+    public Response cancelAddFriend(
             @RequestAttribute Member member,
             @PathVariable int memberId
     ) {
         friendService.cancelAddFriend(member, memberId);
-        return new Response<C>(
+        return new Response(
                 HttpStatus.OK,
                 "친구 신청 취소 성공"
         );
     }
 
     @PostMapping("/allow/{memberId}")
-    public Response<C> allowFriend(
+    public Response allowFriend(
             @RequestAttribute Member member,
             @PathVariable int memberId
     ) {
         friendService.allowFriend(member, memberId);
-        return new Response<C>(
+        return new Response(
                 HttpStatus.OK,
                 "친구 신청 수락 성공"
         );
     }
 
     @PostMapping("/deny/{memberId}")
-    public Response<C> denyFriend(
+    public Response denyFriend(
             @RequestAttribute Member member,
             @PathVariable int memberId
     ) {
         friendService.denyFriend(member, memberId);
-        return new Response<C>(
+        return new Response(
                 HttpStatus.OK,
                 "친구 신청 거절 성공"
         );
