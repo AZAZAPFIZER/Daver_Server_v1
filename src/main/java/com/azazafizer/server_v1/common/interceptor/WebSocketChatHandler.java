@@ -1,17 +1,37 @@
 package com.azazafizer.server_v1.common.interceptor;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class WebSocketChatHandler extends TextWebSocketHandler {
+
+    private static final List<WebSocketSession> list = new ArrayList<>();
 
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
         String payload = message.getPayload();
-        TextMessage textMessage = new TextMessage("Welcome chatting sever~^^");
-        session.sendMessage(textMessage);
+        System.out.println(payload);
+
+        for(WebSocketSession sess: list) {
+            sess.sendMessage(message);
+        }
+    }
+
+    /* Client가 접속 시 호출되는 메서드 */
+    @Override
+    public void afterConnectionEstablished(WebSocketSession session) throws Exception {
+        list.add(session);
+    }
+
+    @Override
+    public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
+        list.remove(session);
     }
 }

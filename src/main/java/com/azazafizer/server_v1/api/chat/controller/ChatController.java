@@ -5,11 +5,13 @@ import com.azazafizer.server_v1.api.chat.service.ChatService;
 import com.azazafizer.server_v1.common.response.ResponseData;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/chat")
 @RequiredArgsConstructor
 public class ChatController {
@@ -26,7 +28,7 @@ public class ChatController {
         );
     }
 
-    @GetMapping
+    @GetMapping("/room/test")
     public ResponseData<List<ChatRoom>> findAllRoom() {
         List<ChatRoom> chatRoomList = chatService.findAllRoom();
         return new ResponseData<>(
@@ -34,5 +36,10 @@ public class ChatController {
                 "모든 채팅방 조회 성공",
                 chatRoomList
         );
+    }
+
+    @GetMapping
+    public String chatGET() {
+        return "room";
     }
 }
