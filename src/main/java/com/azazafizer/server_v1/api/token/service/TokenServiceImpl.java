@@ -27,7 +27,7 @@ public class TokenServiceImpl implements TokenService{
     private final long JWT_REFRESH_EXPIRE =  1000 * 60 * 60 * 24 * 7;
 
     @Override
-    public String generateToken(int memberId, JwtAuth jwtAuth) {
+    public String generateToken(String memberId, JwtAuth jwtAuth) {
         Date expiredAt = new Date();
         String secretKey;
 
@@ -54,7 +54,7 @@ public class TokenServiceImpl implements TokenService{
     @Override
     public Member verifyToken(String token) {
         return memberRepository.findById(
-                Integer.parseInt(parseToken(token, JwtAuth.ACCESS).get("member").toString()))
+                parseToken(token, JwtAuth.ACCESS).get("member").toString())
                 .orElseThrow(() -> new NotFoundException("해당 회원은 존재하지 않습니다"));
     }
 
@@ -65,7 +65,7 @@ public class TokenServiceImpl implements TokenService{
         }
 
         Claims claims = this.parseToken(refreshToken, JwtAuth.REFRESH);
-        Member member = memberRepository.findById(Integer.parseInt(claims.get("userId").toString()))
+        Member member = memberRepository.findById(claims.get("userId").toString())
                 .orElseThrow(() -> new NotFoundException("해당 회원은 존재하지 않습니다"));
 
         return generateToken(member.getId(), JwtAuth.ACCESS);

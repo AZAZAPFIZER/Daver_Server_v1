@@ -33,7 +33,7 @@ public class CategoryServiceImpl implements CategoryService{
     }
 
     @Override
-    public List<CategoryMember> getOtherPeopleCategory(int memberId) {
+    public List<CategoryMember> getOtherPeopleCategory(String memberId) {
         Member member = memberRepository.findById(memberId)
                 .orElseThrow(() -> new NotFoundException("해당 회원은 존재히지 않습니다"));
         return categoryMemberRepository.findByMember(member);

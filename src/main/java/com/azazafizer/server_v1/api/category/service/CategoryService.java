@@ -14,7 +14,7 @@ public interface CategoryService {
 
     List<CategoryMember> getMyCategory(Member member);
 
-    List<CategoryMember> getOtherPeopleCategory(int memberId);
+    List<CategoryMember> getOtherPeopleCategory(String memberId);
 
     void selectCategory(Member member, SelectCategoryDto dto);
 

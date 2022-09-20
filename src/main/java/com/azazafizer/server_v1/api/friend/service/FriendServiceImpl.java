@@ -24,7 +24,7 @@ public class FriendServiceImpl implements FriendService{
     }
 
     @Override
-    public void addFriend(Member member, int memberId) {
+    public void addFriend(Member member, String memberId) {
         Member friendMember = memberRepository.findById(memberId)
                 .orElseThrow(() -> new NotFoundException("해당 회원은 존재하지 않습니다"));
         FriendRelation friendRelation = FriendRelation.builder()
@@ -36,7 +36,7 @@ public class FriendServiceImpl implements FriendService{
     }
 
     @Override
-    public void cancelAddFriend(Member member, int memberId) {
+    public void cancelAddFriend(Member member, String memberId) {
         Member friendMember = memberRepository.findById(memberId)
                 .orElseThrow(() -> new NotFoundException("해당 회원은 존재하지 않습니다"));
         FriendRelation friendRelation = friendRelationRepository.findByMyAndFriend(member, friendMember)
@@ -45,7 +45,7 @@ public class FriendServiceImpl implements FriendService{
     }
 
     @Override
-    public void allowFriend(Member member, int memberId) {
+    public void allowFriend(Member member, String memberId) {
         Member friendMember = memberRepository.findById(memberId)
                 .orElseThrow(() -> new NotFoundException("해당 회원은 존재하지 않습니다"));
         FriendRelation friendRelation = friendRelationRepository.findByMyAndFriend(friendMember, member)
@@ -62,7 +62,7 @@ public class FriendServiceImpl implements FriendService{
     }
 
     @Override
-    public void denyFriend(Member member, int memberId) {
+    public void denyFriend(Member member, String memberId) {
         Member friendMember = memberRepository.findById(memberId)
                 .orElseThrow(() -> new NotFoundException("해당 회원은 존재하지 않습니다"));
         FriendRelation friendRelation = friendRelationRepository.findByMyAndFriend(friendMember, member)

@@ -14,7 +14,7 @@ import java.time.LocalDate;
 public class Member {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private String id;
 
     @Column(nullable = false)
     private String name;
@@ -23,17 +23,13 @@ public class Member {
     @JsonIgnore
     private String pw;
 
-    @Column(nullable = false)
-    private String email;
-
     private String profileImage;
 
     @Column(nullable = false)
     private LocalDate joinedAt;
 
-    public void updateMemberInfo(String name, String email, String profileImage) {
+    public void updateMemberInfo(String name, String profileImage) {
         this.name = name;
-        this.email = email;
         this.profileImage = profileImage;
     }
 
@@ -42,10 +38,10 @@ public class Member {
     }
 
     @Builder
-    public Member(String name, String pw, String email) {
+    public Member(String id , String name, String pw) {
+        this.id = id;
         this.name = name;
         this.pw = pw;
-        this.email = email;
         this.joinedAt = LocalDate.now();
     }
 }

@@ -45,7 +45,7 @@ public class CategoryController {
 
     @GetMapping("/{memberId}")
     public ResponseData<List<CategoryMember>> getOtherMemberCategory(
-            @PathVariable int memberId
+            @PathVariable String memberId
     ) {
         List<CategoryMember> categoryList = categoryService.getOtherPeopleCategory(memberId);
         return new ResponseData<>(

@@ -10,9 +10,9 @@ import javax.validation.constraints.NotEmpty;
 public class JoinDto {
 
     @NotEmpty
+    private String id;
+    @NotEmpty
     private String name;
     @NotEmpty
     private String pw;
-    @NotEmpty
-    private String email;
 }

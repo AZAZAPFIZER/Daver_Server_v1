@@ -24,7 +24,7 @@ public class MemberController {
 
     @GetMapping("/{id}")
     public ResponseData<Member> getMemberById(
-            @PathVariable int id
+            @PathVariable String id
     ) {
         Member member = memberService.getMemberById(id);
         return new ResponseData<>(
