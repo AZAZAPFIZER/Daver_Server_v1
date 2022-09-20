@@ -24,7 +24,7 @@ public class MemberServiceImpl implements MemberService{
 
 
     @Override
-    public Member getMemberById(int id) {
+    public Member getMemberById(String id) {
         return memberRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("해당 회원은 존재하지 않습니다"));
     }
@@ -36,7 +36,6 @@ public class MemberServiceImpl implements MemberService{
         Member member = Member.builder()
                 .pw(pw)
                 .name(joinDto.getName())
-                .email(joinDto.getEmail())
                 .build();
         memberRepository.save(member);
     }
@@ -45,7 +44,7 @@ public class MemberServiceImpl implements MemberService{
     public LoginRo login(LoginDto loginDto) {
         String pw = encrypt.sha512(loginDto.getPw());
 
-        Member member = memberRepository.findByEmailAndPw(loginDto.getEmail(), pw)
+        Member member = memberRepository.findByIdAndPw(loginDto.getId(), pw)
                 .orElseThrow(() -> new NotFoundException("해당 회원은 존재하지 않습니다"));
         String accessToken = tokenService.generateToken(member.getId(), JwtAuth.ACCESS);
         String refreshToken = tokenService.generateToken(member.getId(), JwtAuth.REFRESH);
@@ -56,7 +55,6 @@ public class MemberServiceImpl implements MemberService{
     public void modifyMemberInfo(Member member, ModifyMemberDto dto) {
         member.updateMemberInfo(
                 dto.getName() != null ? member.getName() : dto.getName(),
-                dto.getEmail() != null ? member.getEmail() : dto.getEmail(),
                 dto.getProfileImage());
         memberRepository.save(member);
     }

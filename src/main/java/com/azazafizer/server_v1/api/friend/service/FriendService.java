@@ -9,11 +9,11 @@ public interface FriendService {
 
     List<FriendRelation> getMyFriend(Member member);
 
-    void addFriend(Member member, int memberId);
+    void addFriend(Member member, String memberId);
 
-    void cancelAddFriend(Member member, int memberId);
+    void cancelAddFriend(Member member, String memberId);
 
-    void allowFriend(Member member, int memberId);
+    void allowFriend(Member member, String  memberId);
 
-    void denyFriend(Member member, int memberId);
+    void denyFriend(Member member, String  memberId);
 }

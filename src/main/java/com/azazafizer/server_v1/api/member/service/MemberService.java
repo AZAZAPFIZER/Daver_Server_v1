@@ -9,7 +9,7 @@ import com.azazafizer.server_v1.api.member.domain.ro.LoginRo;
 
 public interface MemberService {
 
-    Member getMemberById(int id);
+    Member getMemberById(String  id);
 
     void join(JoinDto joinDto);
 

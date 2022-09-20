@@ -8,6 +8,5 @@ import lombok.NoArgsConstructor;
 public class ModifyMemberDto {
 
     private String name;
-    private String email;
     private String profileImage;
 }

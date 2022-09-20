@@ -36,7 +36,7 @@ public class FriendController {
     @PostMapping("/{memberId}")
     public Response addFriend(
             @RequestAttribute Member member,
-            @PathVariable int memberId
+            @PathVariable String memberId
     ) {
         friendService.addFriend(member, memberId);
         return new Response(
@@ -48,7 +48,7 @@ public class FriendController {
     @DeleteMapping("/cancel/{memberId}")
     public Response cancelAddFriend(
             @RequestAttribute Member member,
-            @PathVariable int memberId
+            @PathVariable String memberId
     ) {
         friendService.cancelAddFriend(member, memberId);
         return new Response(
@@ -60,7 +60,7 @@ public class FriendController {
     @PostMapping("/allow/{memberId}")
     public Response allowFriend(
             @RequestAttribute Member member,
-            @PathVariable int memberId
+            @PathVariable String memberId
     ) {
         friendService.allowFriend(member, memberId);
         return new Response(
@@ -72,7 +72,7 @@ public class FriendController {
     @PostMapping("/deny/{memberId}")
     public Response denyFriend(
             @RequestAttribute Member member,
-            @PathVariable int memberId
+            @PathVariable String memberId
     ) {
         friendService.denyFriend(member, memberId);
         return new Response(
