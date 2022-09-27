@@ -1,9 +1,6 @@
 package com.azazafizer.server_v1.api.member.service;
 
-import com.azazafizer.server_v1.api.member.domain.dto.JoinDto;
-import com.azazafizer.server_v1.api.member.domain.dto.LoginDto;
-import com.azazafizer.server_v1.api.member.domain.dto.ModifyMemberDto;
-import com.azazafizer.server_v1.api.member.domain.dto.ModifyPwDto;
+import com.azazafizer.server_v1.api.member.domain.dto.*;
 import com.azazafizer.server_v1.api.member.domain.entity.Member;
 import com.azazafizer.server_v1.api.member.domain.repository.MemberRepository;
 import com.azazafizer.server_v1.api.member.domain.ro.LoginRo;
@@ -70,5 +67,11 @@ public class MemberServiceImpl implements MemberService{
 
         member.updatePw(pw);
         memberRepository.save(member);
+    }
+
+    @Override
+    public void authorizationPw(GetPwDto dto) {
+        memberRepository.findByIdAndName(dto.getId(), dto.getName())
+                .orElseThrow(() -> new NotFoundException("해당 회원은 존재하지 않습니다"));
     }
 }
