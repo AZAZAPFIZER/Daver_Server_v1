@@ -10,6 +10,7 @@ import com.azazafizer.server_v1.api.member.domain.ro.LoginRo;
 import com.azazafizer.server_v1.api.token.domain.enums.JwtAuth;
 import com.azazafizer.server_v1.api.token.service.TokenService;
 import com.azazafizer.server_v1.common.Encrypt;
+import com.azazafizer.server_v1.common.exception.BadRequestException;
 import com.azazafizer.server_v1.common.exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -33,7 +34,11 @@ public class MemberServiceImpl implements MemberService{
     public void join(JoinDto joinDto) {
         String pw = encrypt.sha512(joinDto.getPw());
 
+        if (memberRepository.existsById(joinDto.getId())) {
+            throw new BadRequestException("이미 존재하는 아이디 입니다");
+        }
         Member member = Member.builder()
+                .id(joinDto.getId())
                 .pw(pw)
                 .name(joinDto.getName())
                 .build();
