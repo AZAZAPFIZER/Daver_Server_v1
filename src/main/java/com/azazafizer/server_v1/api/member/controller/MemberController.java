@@ -1,9 +1,6 @@
 package com.azazafizer.server_v1.api.member.controller;
 
-import com.azazafizer.server_v1.api.member.domain.dto.JoinDto;
-import com.azazafizer.server_v1.api.member.domain.dto.LoginDto;
-import com.azazafizer.server_v1.api.member.domain.dto.ModifyMemberDto;
-import com.azazafizer.server_v1.api.member.domain.dto.ModifyPwDto;
+import com.azazafizer.server_v1.api.member.domain.dto.*;
 import com.azazafizer.server_v1.api.member.domain.entity.Member;
 import com.azazafizer.server_v1.api.member.domain.ro.LoginRo;
 import com.azazafizer.server_v1.api.member.service.MemberService;
@@ -73,7 +70,18 @@ public class MemberController {
         memberService.modifyPw(member, dto);
         return new Response(
                 HttpStatus.OK,
-                "패스원드 수정 성공"
+                "패스워드 수정 성공"
+        );
+    }
+
+    @PostMapping("/pw")
+    public Response authorizationPw(
+            @RequestBody @Valid GetPwDto dto
+    ) {
+        memberService.authorizationPw(dto);
+        return new Response(
+                HttpStatus.OK,
+                "패스워드를 찾기 위한 인증 성공"
         );
     }
 }
