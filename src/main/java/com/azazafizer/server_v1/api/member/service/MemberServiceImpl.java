@@ -31,14 +31,14 @@ public class MemberServiceImpl implements MemberService{
     public void join(JoinDto joinDto) {
         String pw = encrypt.sha512(joinDto.getPw());
 
-        if (memberRepository.existsById(joinDto.getId())) {
-            throw new BadRequestException("이미 존재하는 아이디 입니다");
-        }
         Member member = Member.builder()
                 .id(joinDto.getId())
                 .pw(pw)
                 .name(joinDto.getName())
                 .build();
+        if (memberRepository.existsById(joinDto.getId())) {
+            throw new BadRequestException("이미 존재하는 아이디 입니다");
+        }
         memberRepository.save(member);
     }
 
