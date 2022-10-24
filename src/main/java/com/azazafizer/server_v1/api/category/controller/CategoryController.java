@@ -6,6 +6,7 @@ import com.azazafizer.server_v1.api.category.domain.entity.Category;
 import com.azazafizer.server_v1.api.category.domain.entity.CategoryMember;
 import com.azazafizer.server_v1.api.category.service.CategoryService;
 import com.azazafizer.server_v1.api.member.domain.entity.Member;
+import com.azazafizer.server_v1.common.annotation.AuthorizationCheck;
 import com.azazafizer.server_v1.common.response.Response;
 import com.azazafizer.server_v1.common.response.ResponseData;
 import lombok.RequiredArgsConstructor;
@@ -31,6 +32,7 @@ public class CategoryController {
         );
     }
 
+    @AuthorizationCheck
     @GetMapping("/my")
     public ResponseData<List<CategoryMember>> getMyCategory(
             @RequestAttribute Member member
@@ -55,6 +57,7 @@ public class CategoryController {
         );
     }
 
+    @AuthorizationCheck
     @PostMapping("/select")
     public Response selectCategory(
             @RequestAttribute Member member,

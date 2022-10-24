@@ -4,6 +4,7 @@ import com.azazafizer.server_v1.api.member.domain.dto.*;
 import com.azazafizer.server_v1.api.member.domain.entity.Member;
 import com.azazafizer.server_v1.api.member.domain.ro.LoginRo;
 import com.azazafizer.server_v1.api.member.service.MemberService;
+import com.azazafizer.server_v1.common.annotation.AuthorizationCheck;
 import com.azazafizer.server_v1.common.response.Response;
 import com.azazafizer.server_v1.common.response.ResponseData;
 import lombok.RequiredArgsConstructor;
@@ -50,6 +51,7 @@ public class MemberController {
         );
     }
 
+    @AuthorizationCheck
     @PatchMapping
     public Response modifyMemberInfo(
             @RequestAttribute Member member,
@@ -62,6 +64,7 @@ public class MemberController {
         );
     }
 
+    @AuthorizationCheck
     @PatchMapping("/pw")
     public Response modifyPw(
             @RequestAttribute Member member,

@@ -10,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -20,6 +19,7 @@ public class FriendController {
 
     private final FriendService friendService;
 
+    @AuthorizationCheck
     @GetMapping("/my")
     public ResponseData<List<FriendRelation>> getMyFriend(
             @RequestAttribute Member member
@@ -45,6 +45,7 @@ public class FriendController {
         );
     }
 
+    @AuthorizationCheck
     @DeleteMapping("/cancel/{memberId}")
     public Response cancelAddFriend(
             @RequestAttribute Member member,
@@ -57,6 +58,7 @@ public class FriendController {
         );
     }
 
+    @AuthorizationCheck
     @PostMapping("/allow/{memberId}")
     public Response allowFriend(
             @RequestAttribute Member member,
@@ -69,6 +71,7 @@ public class FriendController {
         );
     }
 
+    @AuthorizationCheck
     @PostMapping("/deny/{memberId}")
     public Response denyFriend(
             @RequestAttribute Member member,
