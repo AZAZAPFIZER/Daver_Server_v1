@@ -15,4 +15,6 @@ public class JoinDto {
     private String name;
     @NotEmpty
     private String pw;
+    @NotEmpty
+    private String residence;
 }
