@@ -13,4 +13,5 @@ public class AppProperties {
     private String refreshSecret;
     private long JWT_ACCESS_EXPIRE;
     private long JWT_REFRESH_EXPIRE;
+    private String kakaoServer;
 }

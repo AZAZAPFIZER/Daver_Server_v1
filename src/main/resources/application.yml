@@ -24,3 +24,7 @@ logging.level:
 app:
   secret: asdfghjkl
   refreshSecret: asdfghjkl
+  kakaoServer: https://dapi.kakao.com/
+
+kakao:
+  apiKey: 1c2e8e71a4d52bad86587b46130fd814

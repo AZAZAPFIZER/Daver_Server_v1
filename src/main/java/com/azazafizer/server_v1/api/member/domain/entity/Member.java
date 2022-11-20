@@ -28,6 +28,9 @@ public class Member {
     @Column(nullable = false)
     private LocalDate joinedAt;
 
+    @Column(nullable = false)
+    private String residence;
+
     public void updateMemberInfo(String name, String profileImage) {
         this.name = name;
         this.profileImage = profileImage;
@@ -38,10 +41,11 @@ public class Member {
     }
 
     @Builder
-    public Member(String id , String name, String pw) {
+    public Member(String id , String name, String pw, String residence) {
         this.id = id;
         this.name = name;
         this.pw = pw;
         this.joinedAt = LocalDate.now();
+        this.residence = residence;
     }
 }
