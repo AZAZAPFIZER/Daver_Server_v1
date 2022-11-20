@@ -1,5 +1,7 @@
 package com.azazafizer.server_v1.api.member.service;
 
+import com.azazafizer.server_v1.api.map.domain.ro.MapRo;
+import com.azazafizer.server_v1.api.map.service.MapService;
 import com.azazafizer.server_v1.api.member.domain.dto.*;
 import com.azazafizer.server_v1.api.member.domain.entity.Member;
 import com.azazafizer.server_v1.api.member.domain.repository.MemberRepository;
@@ -19,6 +21,7 @@ public class MemberServiceImpl implements MemberService{
     private final TokenService tokenService;
     private final MemberRepository memberRepository;
     private final Encrypt encrypt;
+    private final MapService mapService;
 
 
     @Override
@@ -31,10 +34,14 @@ public class MemberServiceImpl implements MemberService{
     public void join(JoinDto joinDto) {
         String pw = encrypt.sha512(joinDto.getPw());
 
+        MapRo map = mapService.getSearchPlaceByKeyword(joinDto.getResidence());
+
         Member member = Member.builder()
                 .id(joinDto.getId())
                 .pw(pw)
                 .name(joinDto.getName())
+                .x(map.getX())
+                .y(map.getY())
                 .build();
         if (memberRepository.existsById(joinDto.getId())) {
             throw new BadRequestException("이미 존재하는 아이디 입니다");

@@ -20,9 +20,9 @@ public class MapServiceImpl implements MapService{
     private final RestTemplateConfig restTemplateConfig;
 
     @Override
-    public MapRo getSearchPlaceByKeyword() {
+    public MapRo getSearchPlaceByKeyword(String query) {
         try {
-            String queryString = "?query=" + URLEncoder.encode("포스코대로 154", "UTF-8");
+            String queryString = "?query=" + URLEncoder.encode(query, "UTF-8");
             RestTemplate restTemplate = new RestTemplate();
             HttpHeaders headers = new HttpHeaders();
 

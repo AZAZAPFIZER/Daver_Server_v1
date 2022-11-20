@@ -4,5 +4,5 @@ import com.azazafizer.server_v1.api.map.domain.ro.MapRo;
 
 public interface MapService {
 
-    MapRo getSearchPlaceByKeyword();
+    MapRo getSearchPlaceByKeyword(String query);
 }
