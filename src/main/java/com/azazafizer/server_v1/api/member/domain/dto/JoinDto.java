@@ -16,5 +16,5 @@ public class JoinDto {
     @NotEmpty
     private String pw;
     @NotEmpty
-    private String residence;
+    private String address;
 }

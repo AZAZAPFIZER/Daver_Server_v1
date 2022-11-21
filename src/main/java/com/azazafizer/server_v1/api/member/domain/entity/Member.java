@@ -29,7 +29,7 @@ public class Member {
     private LocalDate joinedAt;
 
     @Column(nullable = false)
-    private String residence;
+    private String address;
 
     @Column(nullable = false)
     private String x;
@@ -47,12 +47,12 @@ public class Member {
     }
 
     @Builder
-    public Member(String id , String name, String pw, String residence, String x, String y) {
+    public Member(String id , String name, String pw, String address, String x, String y) {
         this.id = id;
         this.name = name;
         this.pw = pw;
         this.joinedAt = LocalDate.now();
-        this.residence = residence;
+        this.address = address;
         this.x = x;
         this.y = y;
     }

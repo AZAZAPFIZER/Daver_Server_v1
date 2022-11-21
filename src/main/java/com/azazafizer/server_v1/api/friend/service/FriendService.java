@@ -9,6 +9,8 @@ public interface FriendService {
 
     List<FriendRelation> getMyFriend(Member member);
 
+    List<Member> getRecommendFriend(Member member);
+
     void addFriend(Member member, String memberId);
 
     void cancelAddFriend(Member member, String memberId);

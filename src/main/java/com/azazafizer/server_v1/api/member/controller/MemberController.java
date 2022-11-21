@@ -3,6 +3,7 @@ package com.azazafizer.server_v1.api.member.controller;
 import com.azazafizer.server_v1.api.member.domain.dto.*;
 import com.azazafizer.server_v1.api.member.domain.entity.Member;
 import com.azazafizer.server_v1.api.member.domain.ro.LoginRo;
+import com.azazafizer.server_v1.api.member.domain.ro.MemberRo;
 import com.azazafizer.server_v1.api.member.service.MemberService;
 import com.azazafizer.server_v1.common.annotation.AuthorizationCheck;
 import com.azazafizer.server_v1.common.response.Response;
@@ -19,6 +20,17 @@ import javax.validation.Valid;
 public class MemberController {
 
     private final MemberService memberService;
+
+    @GetMapping
+    @AuthorizationCheck
+    public ResponseData<MemberRo> getMemberInfo() {
+        MemberRo memberRo = memberService.getMemberInfo();
+        return new ResponseData<>(
+                HttpStatus.OK,
+                "모든 멤버 정보 조회 성공",
+                memberRo
+        );
+    }
 
     @GetMapping("/{id}")
     public ResponseData<Member> getMemberById(

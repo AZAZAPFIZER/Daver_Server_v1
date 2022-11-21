@@ -33,6 +33,20 @@ public class FriendController {
     }
 
     @AuthorizationCheck
+    @GetMapping("/recommend")
+    public ResponseData<List<Member>> getRecommendFriend(
+            @RequestAttribute Member member
+    ) {
+        List<Member> friendList = friendService.getRecommendFriend(member);
+        return new ResponseData<>(
+                HttpStatus.OK,
+                "자신의 친구 조회 성공",
+                friendList
+        );
+    }
+
+
+    @AuthorizationCheck
     @PostMapping("/{memberId}")
     public Response addFriend(
             @RequestAttribute Member member,

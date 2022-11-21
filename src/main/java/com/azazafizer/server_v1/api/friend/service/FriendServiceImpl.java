@@ -24,6 +24,12 @@ public class FriendServiceImpl implements FriendService{
     }
 
     @Override
+    public List<Member> getRecommendFriend(Member member) {
+        List<Member> memberList = memberRepository.findAll();
+        return memberList;
+    }
+
+    @Override
     public void addFriend(Member member, String memberId) {
         Member friendMember = memberRepository.findById(memberId)
                 .orElseThrow(() -> new NotFoundException("해당 회원은 존재하지 않습니다"));
