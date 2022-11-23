@@ -20,8 +20,8 @@ public class MemberRo {
         private final String id;
         private final String name;
         private final String address;
-        private final String x;
-        private final String y;
+        private final Double x;
+        private final Double y;
         @JsonFormat(pattern = "yyyy-MM-dd")
         private final LocalDate joinedAt;
 
@@ -29,8 +29,8 @@ public class MemberRo {
             this.id = member.getId();
             this.name = member.getName();
             this.address = member.getAddress();
-            this.x = member.getX();
-            this.y = member.getY();
+            this.x = Double.parseDouble(member.getX());
+            this.y = Double.parseDouble(member.getY());
             this.joinedAt = member.getJoinedAt();
         }
 
